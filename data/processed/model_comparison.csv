@@ -1,0 +1,8 @@
+Model,Accuracy
+Logistic Regression,0.5567
+Naive Baseline,0.5554
+Reduced Feature Random Forest,0.4849
+Decision Tree,0.4647
+Tuned Random Forest,0.4484
+XGBoost,0.4421
+Random Forest,0.4295
