@@ -1,19 +1,19 @@
-# TradeVision AI
+## Dashboard
 
-An end-to-end Financial Market Intelligence platform built with Python and Machine Learning.
+TradeVision AI includes an interactive Streamlit dashboard for viewing:
 
-## Project Status
+- Latest model prediction
+- Upward-movement probability
+- Technical indicators
+- Historical gold price data
+- Model performance comparison
+- Historical backtest performance
+- Backtest results
+- Prediction confidence
 
-Currently under development.
+### Run the Dashboard
 
-## Planned Features
+Activate the project virtual environment and run:
 
-- Automated market data collection
-- Data validation pipeline
-- Exploratory Data Analysis
-- Feature Engineering
-- Machine Learning Models
-- Explainable AI (SHAP)
-- Backtesting
-- Interactive Streamlit Dashboard
-- Live Predictions
+```bash
+streamlit run dashboard/app.py
