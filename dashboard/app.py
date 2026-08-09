@@ -277,3 +277,26 @@ st.caption(
     "Model predictions are not guaranteed and should not "
     "be treated as financial advice."
 )
+
+st.subheader("Historical Backtest Performance")
+
+try:
+    backtest = pd.read_csv("data/processed/backtest_results.csv")
+
+    backtest["Date"] = pd.to_datetime(backtest.iloc[:, 0])
+
+    chart_data = backtest[
+        ["Date", "Strategy_Equity", "Buy_Hold_Equity"]
+    ].copy()
+
+    chart_data = chart_data.set_index("Date")
+
+    st.line_chart(chart_data)
+
+    st.caption(
+        "Historical comparison of the TradeVision AI strategy "
+        "against a Buy & Hold benchmark."
+    )
+
+except Exception as e:
+    st.warning(f"Backtest chart unavailable: {e}")
