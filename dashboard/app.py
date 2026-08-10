@@ -300,3 +300,55 @@ try:
 
 except Exception as e:
     st.warning(f"Backtest chart unavailable: {e}")
+
+st.subheader("Model Performance Comparison")
+
+try:
+    model_results = pd.read_csv(
+        "data/processed/model_comparison.csv"
+    )
+
+    st.dataframe(
+        model_results,
+        width="stretch",
+        hide_index=True
+    )
+
+except Exception as e:
+    st.warning(f"Model comparison unavailable: {e}")
+
+st.subheader("Strategy Risk & Performance")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric(
+    "Strategy Return",
+    "98.85%"
+)
+
+col2.metric(
+    "Buy & Hold Return",
+    "108.13%"
+)
+
+col3.metric(
+    "Maximum Drawdown",
+    "-25.06%"
+)
+
+col4, col5, col6 = st.columns(3)
+
+col4.metric(
+    "Sharpe Ratio",
+    "1.2237"
+)
+
+col5.metric(
+    "Signal Win Rate",
+    "55.79%"
+)
+
+col6.metric(
+    "Position Change Rate",
+    "4.04%"
+)
