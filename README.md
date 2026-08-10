@@ -8,6 +8,7 @@ The project includes data collection, data validation, feature engineering, tech
 
 > **Note:** This project is for educational and research purposes only and is not financial advice.
 
+
 ## Project Overview
 
 The project follows an end-to-end machine learning workflow:
@@ -24,6 +25,7 @@ The project follows an end-to-end machine learning workflow:
 10. Backtest the trading strategy
 11. Analyze strategy performance and risk
 12. Deploy the results through a Streamlit dashboard
+
 
 ## Technical Indicators
 
@@ -46,6 +48,7 @@ The model uses:
 - Month
 - Quarter
 
+
 ## Machine Learning Models
 
 The project evaluates:
@@ -57,6 +60,7 @@ The project evaluates:
 - XGBoost
 - Reduced Feature Random Forest
 - Naive Baseline
+
 
 ## Model Performance
 
@@ -75,6 +79,7 @@ The project evaluates:
 **Accuracy:** 55.67%
 
 The results demonstrate that a simpler model can outperform more complex models on this particular dataset.
+
 
 ## Backtesting
 
@@ -97,6 +102,7 @@ Additional strategy metrics:
 
 The backtest produced a strong historical return, but the strategy did not outperform the Buy & Hold benchmark over the tested period.
 
+
 ## Statistical Analysis
 
 The project also tests whether bullish signals were associated with meaningfully different subsequent returns.
@@ -111,6 +117,7 @@ The project also tests whether bullish signals were associated with meaningfully
 
 This indicates that the observed difference in returns should not be interpreted as strong statistical evidence of predictive power.
 
+
 ## Dashboard
 
 TradeVision AI includes an interactive Streamlit dashboard displaying:
@@ -124,6 +131,7 @@ TradeVision AI includes an interactive Streamlit dashboard displaying:
 - Backtest results
 - Strategy risk metrics
 - Prediction confidence
+
 
 ### Run the Dashboard
 
@@ -156,6 +164,7 @@ TradeVision-AI/
 ├── README.md
 └── requirements.txt
 ```
+
 
 ## Technologies
 - Python
