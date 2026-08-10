@@ -127,10 +127,10 @@ TradeVision AI includes an interactive Streamlit dashboard displaying:
 
 ### Run the Dashboard
 
-```bash
 streamlit run dashboard/app.py
 
 Project Structure
+```text
 TradeVision-AI/
 ├── dashboard/
 │   └── app.py
@@ -155,40 +155,46 @@ TradeVision-AI/
 ├── PROJECT_PROGRESS.md
 ├── README.md
 └── requirements.txt
-Technologies
-Python
-Pandas
-NumPy
-Scikit-learn
-XGBoost
-yfinance
-TA
-Matplotlib
-Streamlit
-Git
-GitHub
-Installation
+```
+
+## Technologies
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- yfinance
+- TA
+- Matplotlib
+- Streamlit
+- Git
+- GitHub
+
+
+## Installation
 
 Clone the repository:
 
-git clone https://github.com/phenyosepato/TradeVision-AI.git
+```git clone https://github.com/phenyosepato/TradeVision-AI.git ```
 
 Navigate into the project:
 
-cd TradeVision-AI
+```cd TradeVision-AI ```
 
 Create a virtual environment:
 
-python -m venv .venv
+```python -m venv .venv ```
 
 Install dependencies:
 
-pip install -r requirements.txt
+```pip install -r requirements.txt ```
 
 Run the dashboard:
 
-streamlit run dashboard/app.py
-Limitations
+```streamlit run dashboard/app.py```
+
+
+## Limitations
 
 TradeVision AI is an experimental machine learning project.
 
@@ -198,16 +204,18 @@ Historical backtesting does not guarantee future performance.
 
 The project is intended to demonstrate practical skills in:
 
-Machine learning
-Data analysis
-Feature engineering
-Model evaluation
-Financial data analysis
-Backtesting
-Risk analysis
-Python development
-Dashboard development
-Author
+- Machine learning
+- Data analysis
+- Feature engineering
+- Model evaluation
+- Financial data analysis
+- Backtesting
+- Risk analysis
+- Python development
+- Dashboard development
+
+
+## Author
 
 Phenyo Sepato
 
