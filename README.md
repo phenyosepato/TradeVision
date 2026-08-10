@@ -1,119 +1,134 @@
-TradeVision AI
-Machine Learning Market Prediction & Trading Analytics
+# TradeVision AI
 
-TradeVision AI is an end-to-end machine learning project that analyzes historical gold futures data (GC=F) and predicts the probability of upward price movement.
+## Machine Learning Market Prediction Dashboard
 
-The project combines financial data processing, technical indicators, machine learning model comparison, probability analysis, historical backtesting, risk analysis, and an interactive Streamlit dashboard.
+TradeVision AI is a machine learning project that analyzes historical gold futures data (`GC=F`) and predicts the probability of upward price movement.
 
-Important: TradeVision AI is an experimental machine learning project and is not financial advice or a guaranteed trading system.
+The project includes data collection, data validation, feature engineering, technical indicators, machine learning models, model evaluation, backtesting, and an interactive Streamlit dashboard.
 
-Dashboard
+> **Note:** This project is for educational and research purposes only and is not financial advice.
 
-TradeVision AI includes an interactive Streamlit dashboard for viewing:
+## Project Overview
 
-Latest model prediction
-Upward-movement probability
-Technical indicators
-Historical gold price data
-Model performance comparison
-Historical backtest performance
-Strategy risk metrics
-Prediction confidence
-Run the Dashboard
+The project follows an end-to-end machine learning workflow:
 
-Activate the project virtual environment and run:
+1. Collect historical gold futures data
+2. Validate and profile the dataset
+3. Build technical features
+4. Prepare training and testing data
+5. Train multiple machine learning models
+6. Tune selected models
+7. Compare model performance
+8. Analyze prediction probabilities
+9. Perform statistical testing
+10. Backtest the trading strategy
+11. Analyze strategy performance and risk
+12. Deploy the results through a Streamlit dashboard
 
-streamlit run dashboard/app.py
-Project Overview
+## Technical Indicators
 
-The project uses historical gold futures data to build a machine learning pipeline for predicting whether the next trading period is likely to experience upward price movement.
+The model uses:
 
-The workflow includes:
+- Simple Moving Average (SMA 20)
+- Simple Moving Average (SMA 50)
+- Simple Moving Average (SMA 200)
+- Exponential Moving Average (EMA 20)
+- Relative Strength Index (RSI)
+- Moving Average Convergence Divergence (MACD)
+- MACD Signal
+- Bollinger Bands
+- Average True Range (ATR)
+- Daily Return
+- Log Return
+- Volatility
+- Trading Volume
+- Day of Week
+- Month
+- Quarter
 
-Market data collection
-Data validation and profiling
-Feature engineering
-Technical indicator generation
-Train/test preparation
-Multiple machine learning models
-Hyperparameter tuning
-Probability calibration
-Statistical analysis
-Historical backtesting
-Performance and risk analysis
-Interactive dashboard deployment
-Technical Indicators
+## Machine Learning Models
 
-TradeVision AI uses several market-derived features, including:
+The project evaluates:
 
-SMA 20
-SMA 50
-SMA 200
-EMA 20
-RSI
-MACD
-MACD Signal
-Bollinger Bands
-ATR
-Daily Return
-Log Return
-Volatility
-Trading Volume
-Day of Week
-Month
-Quarter
-Machine Learning Models
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- Tuned Random Forest
+- XGBoost
+- Reduced Feature Random Forest
+- Naive Baseline
 
-Several models were evaluated:
+## Model Performance
 
-Model	Accuracy
-Logistic Regression	55.67%
-Naive Baseline	55.54%
-Reduced Feature Random Forest	48.49%
-Decision Tree	46.47%
-Tuned Random Forest	44.84%
-XGBoost	44.21%
-Random Forest	42.95%
+| Model | Accuracy |
+|---|---:|
+| Logistic Regression | 55.67% |
+| Naive Baseline | 55.54% |
+| Reduced Feature Random Forest | 48.49% |
+| Decision Tree | 46.47% |
+| Tuned Random Forest | 44.84% |
+| XGBoost | 44.21% |
+| Random Forest | 42.95% |
 
-Best-performing model: Logistic Regression
+**Best-performing model:** Logistic Regression
 
-Accuracy: 55.67%
+**Accuracy:** 55.67%
 
-The model comparison demonstrates that more complex models did not necessarily outperform the simpler Logistic Regression model on this dataset.
+The results demonstrate that a simpler model can outperform more complex models on this particular dataset.
 
-Backtesting
+## Backtesting
 
-The strategy was evaluated on historical data from:
+The trading strategy was evaluated from:
 
-2023-06-06 to 2026-07-31
+**2023-06-06 to 2026-07-31**
 
-Metric	TradeVision AI	Buy & Hold
-Total Return	98.85%	108.13%
-Annualized Return	25.69%	26.23%
-Maximum Drawdown	-25.06%	-25.06%
+| Metric | TradeVision AI | Buy & Hold |
+|---|---:|---:|
+| Total Return | 98.85% | 108.13% |
+| Annualized Return | 25.69% | 26.23% |
+| Maximum Drawdown | -25.06% | -25.06% |
 
 Additional strategy metrics:
 
-Sharpe Ratio: 1.2237
-Signal Win Rate: 55.79%
-Position Change Rate: 4.04%
-Average Days Between Position Changes: 24.78
+- Sharpe Ratio: **1.2237**
+- Signal Win Rate: **55.79%**
+- Position Change Rate: **4.04%**
+- Average Days Between Position Changes: **24.78**
 
-The backtest shows that the strategy produced a strong historical return, although it did not outperform the Buy & Hold benchmark over the tested period.
+The backtest produced a strong historical return, but the strategy did not outperform the Buy & Hold benchmark over the tested period.
 
-Statistical Analysis
+## Statistical Analysis
 
-The project also evaluates whether bullish signals produced meaningfully different subsequent returns.
+The project also tests whether bullish signals were associated with meaningfully different subsequent returns.
 
-Bullish signal mean return: 0.1022%
-No-signal mean return: 0.0590%
-Difference: 0.0432%
-T-statistic: 0.2774
-P-value: 0.7836
+- Bullish signal mean return: **0.1022%**
+- No-signal mean return: **0.0590%**
+- Difference: **0.0432%**
+- T-statistic: **0.2774**
+- P-value: **0.7836**
 
-Result: Not statistically significant at the 5% level.
+**Result:** Not statistically significant at the 5% level.
 
-This is an important limitation of the model: the observed difference between bullish and non-bullish signal returns was not statistically significant in the tested data.
+This indicates that the observed difference in returns should not be interpreted as strong statistical evidence of predictive power.
+
+## Dashboard
+
+TradeVision AI includes an interactive Streamlit dashboard displaying:
+
+- Latest model prediction
+- Upward-movement probability
+- Technical indicators
+- Historical gold price data
+- Model performance comparison
+- Historical backtest performance
+- Backtest results
+- Strategy risk metrics
+- Prediction confidence
+
+### Run the Dashboard
+
+```bash
+streamlit run dashboard/app.py
 
 Project Structure
 TradeVision-AI/
@@ -150,8 +165,9 @@ yfinance
 TA
 Matplotlib
 Streamlit
-Git & GitHub
-Running the Project
+Git
+GitHub
+Installation
 
 Clone the repository:
 
@@ -174,16 +190,25 @@ Run the dashboard:
 streamlit run dashboard/app.py
 Limitations
 
-TradeVision AI should be treated as an experimental machine learning project.
+TradeVision AI is an experimental machine learning project.
 
-The model's predictive accuracy is only modestly above the naive baseline, and statistical testing did not find a significant difference between bullish and non-bullish signal returns.
+The model's predictive accuracy is only modestly above the naive baseline, and statistical testing did not identify a statistically significant difference between bullish and non-bullish signal returns.
 
-Historical backtesting also does not guarantee future performance.
+Historical backtesting does not guarantee future performance.
 
-The project is intended to demonstrate practical machine learning, data analysis, model evaluation, and financial-data engineering skills rather than provide guaranteed trading signals.
+The project is intended to demonstrate practical skills in:
 
+Machine learning
+Data analysis
+Feature engineering
+Model evaluation
+Financial data analysis
+Backtesting
+Risk analysis
+Python development
+Dashboard development
 Author
 
 Phenyo Sepato
 
-GitHub: @phenyosepato
+GitHub: phenyosepato
