@@ -188,6 +188,18 @@ comparison_path = (
 
 comparison_data = pd.read_csv(comparison_path)
 
+comparison_data.columns = [
+    column.strip()
+    for column in comparison_data.columns
+]
+
+st.bar_chart(
+    comparison_data,
+    x="Model",
+    y="Accuracy",
+    width="stretch",
+)
+
 st.dataframe(
     comparison_data,
     width="stretch",
@@ -225,6 +237,12 @@ chart_data = chart_data.set_index("Date")
 st.line_chart(
     chart_data,
     width="stretch",
+)
+st.subheader("Strategy vs Buy & Hold")
+
+st.caption(
+    "Growth of $1 invested in the TradeVision AI strategy "
+    "compared with a Buy & Hold strategy."
 )
 
 st.caption(
