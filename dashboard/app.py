@@ -353,8 +353,19 @@ st.bar_chart(
 
 st.divider()
 
-st.caption(
+st.subheader("About TradeVision AI")
+
+st.write(
     "TradeVision AI is an experimental machine learning project "
-    "for educational and research purposes. Model predictions "
-    "are not guaranteed and should not be treated as financial advice."
+    "designed to demonstrate financial data analysis, feature engineering, "
+    "model evaluation, backtesting, and dashboard development."
+)
+
+st.caption(
+    "Educational and research purposes only. Model predictions are not "
+    "guaranteed and should not be treated as financial advice."
+)
+
+st.caption(
+    "Built with Python • Pandas • Scikit-learn • XGBoost • Streamlit"
 )
