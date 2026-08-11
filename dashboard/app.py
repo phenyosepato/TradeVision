@@ -1,22 +1,19 @@
-"""
-===========================================================
-TradeVision AI
-Interactive Dashboard
-===========================================================
-"""
-
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-
-sys.path.insert(0, str(PROJECT_ROOT))
-import streamlit as st
 import pandas as pd
+import streamlit as st
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.models.load_model import load_model
 from src.models.prepare_data import prepare_dataset
 
+
+# ---------------------------------------------------------
+# PAGE CONFIGURATION
+# ---------------------------------------------------------
 
 st.set_page_config(
     page_title="TradeVision AI",
@@ -36,33 +33,32 @@ X, y = prepare_dataset("GC=F")
 latest_features = X.iloc[[-1]]
 latest_date = latest_features.index[0]
 
-prediction = model.predict(
-    latest_features
-)[0]
+prediction = model.predict(latest_features)[0]
 
-probability = model.predict_proba(
-    latest_features
-)[0][1]
+probability = model.predict_proba(latest_features)[0][1]
 
 
 # ---------------------------------------------------------
-# DASHBOARD TITLE
+# HEADER
 # ---------------------------------------------------------
 
-st.title("TradeVision AI")
+st.title("📈 TradeVision AI")
 
-st.subheader(
-    "Machine Learning Market Prediction Dashboard"
-)
+st.subheader("Machine Learning Market Prediction Dashboard")
 
 st.caption(
-    "Gold futures (GC=F) — Logistic Regression Model"
+    "Gold Futures (GC=F) • Logistic Regression • "
+    f"Latest Market Data: {latest_date.date()}"
 )
+
+st.divider()
 
 
 # ---------------------------------------------------------
 # KEY METRICS
 # ---------------------------------------------------------
+
+st.header("Market Snapshot")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -100,17 +96,25 @@ st.divider()
 st.header("Latest Model Signal")
 
 if prediction == 1:
-
-    st.success("BULLISH")
-
+    st.success("🟢 BULLISH — Model predicts upward movement.")
 else:
-
-    st.warning("NOT BULLISH")
-
+    st.warning("🟡 NOT BULLISH — Model does not predict upward movement.")
 
 st.write(
-    f"Latest available market date: "
-    f"**{latest_date.date()}**"
+    f"Latest available market date: **{latest_date.date()}**"
+)
+
+
+# ---------------------------------------------------------
+# PREDICTION CONFIDENCE
+# ---------------------------------------------------------
+
+st.subheader("Prediction Confidence")
+
+st.progress(float(probability))
+
+st.write(
+    f"Probability of upward movement: **{probability:.2%}**"
 )
 
 
@@ -145,26 +149,30 @@ indicator_data = pd.DataFrame(
 
 st.dataframe(
     indicator_data,
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
 
+
 # ---------------------------------------------------------
-# HISTORICAL PRICE CHART
+# GOLD PRICE HISTORY
 # ---------------------------------------------------------
 
 st.divider()
 
 st.header("Gold Futures Price History")
 
-price_data = X.copy()
+price_data = X[["Close"]].copy()
 
 st.line_chart(
-    price_data["Close"]
+    price_data,
+    y="Close",
+    width="stretch",
 )
 
+
 # ---------------------------------------------------------
-# MODEL COMPARISON
+# MODEL PERFORMANCE
 # ---------------------------------------------------------
 
 st.divider()
@@ -178,15 +186,14 @@ comparison_path = (
     / "model_comparison.csv"
 )
 
-comparison_data = pd.read_csv(
-    comparison_path
-)
+comparison_data = pd.read_csv(comparison_path)
 
 st.dataframe(
     comparison_data,
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
+
 
 # ---------------------------------------------------------
 # BACKTEST PERFORMANCE
@@ -196,38 +203,6 @@ st.divider()
 
 st.header("Historical Backtest Performance")
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.metric(
-        "Strategy Return",
-        "98.85%"
-    )
-
-with col2:
-    st.metric(
-        "Buy & Hold Return",
-        "108.13%"
-    )
-
-with col3:
-    st.metric(
-        "Signal Win Rate",
-        "55.79%"
-    )
-
-st.caption(
-    "Historical backtest period: 2023-06-06 to 2026-07-31"
-)
-
-# ---------------------------------------------------------
-# BACKTEST RESULTS
-# ---------------------------------------------------------
-
-st.divider()
-
-st.header("Backtest Results")
-
 backtest_path = (
     PROJECT_ROOT
     / "data"
@@ -235,35 +210,104 @@ backtest_path = (
     / "backtest_results.csv"
 )
 
-backtest_data = pd.read_csv(
-    backtest_path
+backtest_data = pd.read_csv(backtest_path)
+
+backtest_data["Date"] = pd.to_datetime(
+    backtest_data.iloc[:, 0]
 )
 
-st.dataframe(
-    backtest_data.tail(20),
-    use_container_width=True,
-    hide_index=True,
+chart_data = backtest_data[
+    ["Date", "Strategy_Equity", "Buy_Hold_Equity"]
+].copy()
+
+chart_data = chart_data.set_index("Date")
+
+st.line_chart(
+    chart_data,
+    width="stretch",
 )
+
+st.caption(
+    "Historical comparison of the TradeVision AI strategy "
+    "against a Buy & Hold benchmark."
+)
+
+
+# ---------------------------------------------------------
+# BACKTEST SUMMARY
+# ---------------------------------------------------------
+
+st.subheader("Backtest Results")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "Strategy Return",
+        "98.85%",
+    )
+
+with col2:
+    st.metric(
+        "Buy & Hold Return",
+        "108.13%",
+    )
+
+with col3:
+    st.metric(
+        "Signal Win Rate",
+        "55.79%",
+    )
+
+st.caption(
+    "Historical backtest period: "
+    "2023-06-06 to 2026-07-31"
+)
+
+
+# ---------------------------------------------------------
+# STRATEGY RISK & PERFORMANCE
+# ---------------------------------------------------------
+
+st.subheader("Strategy Risk & Performance")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "Maximum Drawdown",
+        "-25.06%",
+    )
+
+with col2:
+    st.metric(
+        "Sharpe Ratio",
+        "1.2237",
+    )
+
+with col3:
+    st.metric(
+        "Position Change Rate",
+        "4.04%",
+    )
+
+
+# ---------------------------------------------------------
+# RECENT BACKTEST OBSERVATIONS
+# ---------------------------------------------------------
+
+st.subheader("Recent Backtest Observations")
 
 st.caption(
     "Showing the 20 most recent observations from the historical backtest."
 )
 
-# ---------------------------------------------------------
-# PREDICTION PROBABILITY
-# ---------------------------------------------------------
-
-st.divider()
-
-st.header("Prediction Confidence")
-
-st.progress(
-    float(probability)
+st.dataframe(
+    backtest_data.tail(20),
+    width="stretch",
+    hide_index=True,
 )
 
-st.write(
-    f"Probability of upward movement: **{probability:.2%}**"
-)
 
 # ---------------------------------------------------------
 # DISCLAIMER
@@ -272,83 +316,7 @@ st.write(
 st.divider()
 
 st.caption(
-    "TradeVision AI is an experimental machine learning "
-    "project for educational and research purposes. "
-    "Model predictions are not guaranteed and should not "
-    "be treated as financial advice."
-)
-
-st.subheader("Historical Backtest Performance")
-
-try:
-    backtest = pd.read_csv("data/processed/backtest_results.csv")
-
-    backtest["Date"] = pd.to_datetime(backtest.iloc[:, 0])
-
-    chart_data = backtest[
-        ["Date", "Strategy_Equity", "Buy_Hold_Equity"]
-    ].copy()
-
-    chart_data = chart_data.set_index("Date")
-
-    st.line_chart(chart_data)
-
-    st.caption(
-        "Historical comparison of the TradeVision AI strategy "
-        "against a Buy & Hold benchmark."
-    )
-
-except Exception as e:
-    st.warning(f"Backtest chart unavailable: {e}")
-
-st.subheader("Model Performance Comparison")
-
-try:
-    model_results = pd.read_csv(
-        "data/processed/model_comparison.csv"
-    )
-
-    st.dataframe(
-        model_results,
-        width="stretch",
-        hide_index=True
-    )
-
-except Exception as e:
-    st.warning(f"Model comparison unavailable: {e}")
-
-st.subheader("Strategy Risk & Performance")
-
-col1, col2, col3 = st.columns(3)
-
-col1.metric(
-    "Strategy Return",
-    "98.85%"
-)
-
-col2.metric(
-    "Buy & Hold Return",
-    "108.13%"
-)
-
-col3.metric(
-    "Maximum Drawdown",
-    "-25.06%"
-)
-
-col4, col5, col6 = st.columns(3)
-
-col4.metric(
-    "Sharpe Ratio",
-    "1.2237"
-)
-
-col5.metric(
-    "Signal Win Rate",
-    "55.79%"
-)
-
-col6.metric(
-    "Position Change Rate",
-    "4.04%"
+    "TradeVision AI is an experimental machine learning project "
+    "for educational and research purposes. Model predictions "
+    "are not guaranteed and should not be treated as financial advice."
 )
