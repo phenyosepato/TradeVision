@@ -325,6 +325,14 @@ st.dataframe(
     width="stretch",
     hide_index=True,
 )
+st.subheader("Indicator Overview")
+
+indicator_chart = indicator_data.set_index("Indicator")
+
+st.bar_chart(
+    indicator_chart,
+    width="stretch",
+)
 
 
 # ---------------------------------------------------------
