@@ -103,6 +103,18 @@ else:
 st.write(
     f"Latest available market date: **{latest_date.date()}**"
 )
+if prediction == 1:
+    st.info(
+        "The model classifies the latest market observation as bullish, "
+        "meaning it predicts a higher probability of upward price movement "
+        "for the next trading period."
+    )
+else:
+    st.info(
+        "The model does not classify the latest market observation as bullish. "
+        "This means the predicted probability of upward price movement "
+        "does not meet the model's bullish classification threshold."
+    )
 
 
 # ---------------------------------------------------------
