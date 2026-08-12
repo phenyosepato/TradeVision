@@ -9,6 +9,22 @@ The project includes data collection, data validation, feature engineering, tech
 > **Note:** This project is for educational and research purposes only and is not financial advice.
 
 
+## Dashboard Preview
+
+![TradeVision AI Dashboard](assets/01_dashboard_main.png)
+
+### Model Performance
+
+![Model Performance Graph](assets/02_model_performance_graph.png)
+
+![Model Performance Table](assets/03_model_performance_table.png)
+
+### Backtesting Performance
+
+![Historical Backtest Performance](assets/04_backtest_performance.png)
+
+[View the Live Dashboard](https://tradevision-ai-im5qbqcqullsxmfuar3wrr.streamlit.app/)
+
 ## Project Overview
 
 The project follows an end-to-end machine learning workflow:
