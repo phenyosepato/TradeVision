@@ -42,7 +42,7 @@ probability = model.predict_proba(latest_features)[0][1]
 # HEADER
 # ---------------------------------------------------------
 
-st.title("📈 TradeVision AI")
+st.title("TradeVision AI")
 
 st.subheader("Machine Learning Market Prediction Dashboard")
 
