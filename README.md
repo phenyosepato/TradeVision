@@ -1,4 +1,4 @@
-# TradeVision AI
+# TradeVision
 
 ## Machine Learning Market Prediction Dashboard
 
