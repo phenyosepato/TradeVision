@@ -16,7 +16,7 @@ from src.models.prepare_data import prepare_dataset
 # ---------------------------------------------------------
 
 st.set_page_config(
-    page_title="TradeVision AI",
+    page_title="TradeVision-AI 📈",
     page_icon="📈",
     layout="wide",
 )
@@ -42,7 +42,7 @@ probability = model.predict_proba(latest_features)[0][1]
 # HEADER
 # ---------------------------------------------------------
 
-st.title("TradeVision AI")
+st.title("TradeVision")
 
 st.subheader("Machine Learning Market Prediction Dashboard")
 
