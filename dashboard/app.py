@@ -353,10 +353,10 @@ st.bar_chart(
 
 st.divider()
 
-st.subheader("About TradeVision AI")
+st.subheader("About TradeVision")
 
 st.write(
-    "TradeVision AI is an experimental machine learning project "
+    "TradeVision is an experimental machine learning project "
     "designed to demonstrate financial data analysis, feature engineering, "
     "model evaluation, backtesting, and dashboard development."
 )
