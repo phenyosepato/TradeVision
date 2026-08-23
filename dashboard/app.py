@@ -16,7 +16,7 @@ from src.models.prepare_data import prepare_dataset
 # ---------------------------------------------------------
 
 st.set_page_config(
-    page_title="TradeVision-AI 📈",
+    page_title="TradeVision",
     page_icon="📈",
     layout="wide",
 )
